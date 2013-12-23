@@ -1,0 +1,19 @@
+en:
+  messages:
+    change_settings: 'Not happy with these settings?'
+  errors:
+    repo_path_undefined: 'The path to the repository is not defined'
+    repo_path_doesnt_exist: 'The path "%{path}" does not exist on the server'
+    repo_path_not_writable: 'The path "%{path}" is not writable by the Rails user. You may want to use the "chown" command to fix that'
+    repo_already_exists: 'There is already a repository in "%{path}"!'
+  help:
+    field_repo_path: 'Path on the server, must be writable for the Rails user'
+    field_repo_url: 'URL to display if the Redmine Checkout plugin is installed'
+    field_branches: 'Branches to be created by default, other than master'
+    field_gitignore: 'Default content for the .gitignore file'
+  labels:
+    gitignore: '[Optional] Gitignore'
+    branches: '[Optional] Branches'
+    repo_url: '[Optional] Repository URL'
+  buttons:
+    quick_create: 'Quick create [Create Git plugin]'
