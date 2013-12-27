@@ -8,18 +8,20 @@ class CreateGitController < ApplicationController
 
   def new
 
-    @repo_path_base=Setting.plugin_redmine_create_git['repo_path']+@project.identifier
+    @repo_path_base = Setting.plugin_redmine_create_git['repo_path']
+    @repo_path_base += '/' unless @repo_path_base[-1, 1]=='/'
+    @repo_path_base += @project.identifier
 
   end
 
 
   def create
 
-    @identifier=params[:repo_identifier]
-    @is_default=params[:is_default]
-    @repository=nil
+    @identifier = params[:repo_identifier]
+    @is_default = params[:is_default]
+    @repository = nil
     begin
-      @repository=GitCreator::create_git(@project, @identifier, @is_default)
+      @repository = GitCreator::create_git(@project, @identifier, @is_default)
       if @repository and @repository.save
         redirect_to :controller => 'repositories', :action => 'show', :id => @project, :repository_id => @repository.identifier_param
       else
@@ -34,14 +36,14 @@ class CreateGitController < ApplicationController
   private
 
   def find_project
-    @project=Project.find_all_by_identifier(params[:project_identifier]).first
+    @project = Project.find_by_identifier(params[:project_id])
   end
 
   def check_settings
-    repo_path=Setting.plugin_redmine_create_git['repo_path']
-    return flash[:error]=I18n.t('errors.repo_path_undefined') if repo_path.empty?
-    return flash[:error]=I18n.t('repo_path_doesnt_exist', {path: repo_path}) unless File.exist?(repo_path)
-    return flash[:error]=I18n.t('repo_path_not_writable', {path: repo_path}) unless (File.exist?(repo_path) and File.stat(repo_path).writable_real?)
+    repo_path = Setting.plugin_redmine_create_git['repo_path']
+    return flash[:error] = I18n.t('errors.repo_path_undefined') if repo_path.empty?
+    return flash[:error] = I18n.t('repo_path_doesnt_exist', {path: repo_path}) unless File.exist?(repo_path)
+    return flash[:error] = I18n.t('repo_path_not_writable', {path: repo_path}) unless (File.exist?(repo_path) and File.stat(repo_path).writable_real?)
   end
 
   def check_create_permission

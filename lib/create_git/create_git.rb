@@ -22,7 +22,7 @@ class GitCreator
     if project and create_repo(new_repo_path)
       repo=Repository.factory('Git')
       repo.project = project
-      repo.url = repo_path_base+project.identifier+'.'+repo_identifier
+      repo.url = repo_path_base+new_repo_name
       repo.login = ''
       repo.password = ''
       repo.root_url = new_repo_path
