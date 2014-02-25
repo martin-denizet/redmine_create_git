@@ -1,13 +1,15 @@
-= Redmine Create Git plugin
+# Redmine Create Git plugin
 
 I had to create Git repositories quite often and going to the command line to initialize a repository was time-consuming.
 This plugins allows Git repository creation directly from the Redmine project settings.
+Tested on Redmine 2.4.2 stable
 
-== READ FIRST
+## READ FIRST
 
 This plugin is made to work with git SmartHTTP. It is required to have the Redmine.pm installed and configured.
-I STRONGLY recommend you read carefully the "GIT SMART HTTP SUPPORT" section of http://www.redmine.org/projects/redmine/repository/entry/trunk/extra/svn/Redmine.pm
-The git section in Apache's VirtualHost for Redmine as following:
+I *STRONGLY* recommend you read carefully the "GIT SMART HTTP SUPPORT" section of http://www.redmine.org/projects/redmine/repository/entry/trunk/extra/svn/Redmine.pm
+
+The git section in Apache's VirtualHost for Redmine should be as following:
 ```
     #From the Remine.pm Git Smart Http instructions:
     SetEnv GIT_PROJECT_ROOT /opt/gws/repos/git/
@@ -39,18 +41,24 @@ The git section in Apache's VirtualHost for Redmine as following:
     </Location>
 ```
 
-== Features
+## Features
 
 * Create a git repository from the project Settings
 * Configurable .gitignore initialization
 * Configurable branches to create
 * Integration with Redmine Checkout plugin
 
-== Known Issues
+## Screenshots
+
+* [Configuration](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_configuration.png)
+* [New repository form](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_new_repo.png)
+* [New repository saved with Redmine Checkout Plugin installed](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_new_repo.png)
+
+## Known Issues
 
 * No validation tests on the plugin configuration page input!
 
-== Downloading and installing the plugin
+## Downloading and installing the plugin
 
 First download the plugin using git, open a terminal in your Redmine installation directory:
 
@@ -63,16 +71,17 @@ The installation is now finished and you will be able to use the plugin after yo
 
 No need to migrate the database!
 
-== Configuration
+## Configuration
 
 Go to your Redmine plugin configuration page. For example http://redmine.domain.com/settings/plugin/redmine_create_git
 Set the path to the repositories. It must be a local path and the user running Redmine on the server must have rw permissions.
+You can also configure the URL to integrate with Redmine Checkout Plugin. It tested with [rkallensee's fork](https://github.com/rkallensee/redmine_checkout.git).
 
-== Credits
+## Credits
 
 Uses Clément Alexandre's content_for_in_controllers gem: https://github.com/clm-a/content_for_in_controllers
 
-== License
+## License
 
 GPLv2
 
