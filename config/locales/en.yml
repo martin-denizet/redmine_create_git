@@ -8,7 +8,7 @@ en:
     repo_already_exists: 'There is already a repository in "%{path}"!'
   help:
     field_repo_path: 'Path on the server, must be writable for the Rails user'
-    field_repo_url: 'URL to display if the Redmine Checkout plugin is installed'
+    field_repo_url: 'URL to display if the Redmine Checkout plugin is installed. Example: https://redmine.domain.com/git/'
     field_branches: 'Branches to be created by default, other than master'
     field_gitignore: 'Default content for the .gitignore file'
   labels:
