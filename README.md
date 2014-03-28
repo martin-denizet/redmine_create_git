@@ -1,8 +1,13 @@
 # Redmine Create Git plugin
 
 Create and initialize a new Git repository from Redmine within seconds!
-I had to create Git repositories quite often and going to the command line to initialize a repository was time-consuming.
-This plugins allows Git repository creation directly from the Redmine project settings.
+
+I had to create Git repositories quite often and going to the command line to initialize a repository was time-consuming, this plugin solves this problem.
+
+If you like this plugin, you're welcome to endorse me!
+[![endorse](https://api.coderwall.com/martin-denizet/endorsecount.png)](https://coderwall.com/martin-denizet)
+
+Work sponsored by Algen, visit us at http://algen.co
 
 ## Compatibility
 
@@ -64,7 +69,7 @@ The git section in Apache's VirtualHost for Redmine should be as following:
 
 ## Known Issues
 
-* Only compatible with Linux (Tested on Debian)
+* Only compatible with Linux *(Tested on Debian)*
 * No validation tests on the plugin configuration page input!
 
 ## Downloading and installing the plugin
@@ -89,9 +94,9 @@ You can also configure the URL to integrate with Redmine Checkout Plugin. Tested
 ## Use
 
 * Go to the Project Settings, Repository tab
-* Click "Quick create [Create Git plugin]"
+* Click *"Quick create [Create Git plugin]"*
 * Input a repository identifier
-* Click "Create"
+* Click *"Create"*
 * Start working with git!
 
 ## Credits
