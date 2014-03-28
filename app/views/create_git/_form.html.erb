@@ -1,0 +1,54 @@
+<% if User.current.admin? %>
+    <div class="contextual">
+      <%= t('messages.change_settings') %>
+      <%= link_to t('button_configure'), {controller: 'settings', action: 'plugin', id: 'redmine_create_git'}, class: 'icon icon-edit' %>
+    </div>
+<% end %>
+
+<div id="errors"></div>
+<div class="box tabular">
+
+  <p>
+    <%= label_tag('repository_scm', l(:field_identifier)) %>
+    <%= text_field_tag :repo_identifier, '' %>
+    <em class="info">
+      <%= l(:text_length_between, :min => 1, :max => Repository::IDENTIFIER_MAX_LENGTH) %> <%= l(:text_repository_identifier_info).html_safe %>
+    </em>
+  </p>
+
+  <p>
+    <%= label_tag('repository_scm', l(:field_path_to_repository)) %>
+    <%= text_field_tag :path_to_repository, '', :disabled => true, :size => 50 %>
+  </p>
+
+  <p>
+    <%= label_tag('repository_scm', l(:field_repository_is_default)) %>
+    <%= check_box_tag :is_default %>
+  </p>
+</div>
+<script type="text/javascript">
+    var path = '<%= @repo_path_base %>';
+    var existing = <%= raw @project.repositories.where('type=?','Repository::Git').collect{|r| r.identifier} %>;
+    $('#path_to_repository').val(path);
+    $('#repo_identifier').on('input', function (target) {
+        if ($(this).val().length > 0) {
+            $('#path_to_repository').val(path + '.' + $(this).val());
+        } else {
+            $('#path_to_repository').val(path);
+        }
+
+        if ($.inArray($(this).val(), existing) >= 0) {
+            $('#errors').append(
+                    '<div id="errorExplanation"><ul>' +
+                            '<li>"' + $(this).val() + '" <%= t('activerecord.errors.messages.taken') %></li > ' +
+                            '</ul></div>'
+            )
+            ;
+        } else {
+            if ($('#duplicate-identifier')) {
+                $('#duplicate-identifier').remove();
+            }
+        }
+
+    });
+</script>
