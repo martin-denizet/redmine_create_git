@@ -1,8 +1,16 @@
 # Redmine Create Git plugin
 
+Create and initialize a new Git repository from Redmine within seconds!
 I had to create Git repositories quite often and going to the command line to initialize a repository was time-consuming.
 This plugins allows Git repository creation directly from the Redmine project settings.
-Tested on Redmine 2.4.2 stable
+
+## Compatibility
+
+Compatible with Redmine 2.4.x and 2.5.x on Linux
+
+Tested on:
+* 2.4.2 stable
+* 2.5.0 stable
 
 ## READ FIRST
 
@@ -52,17 +60,18 @@ The git section in Apache's VirtualHost for Redmine should be as following:
 
 * [Configuration](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_configuration.png)
 * [New repository form](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_new_repo.png)
-* [New repository saved with Redmine Checkout Plugin installed](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_new_repo.png)
+* [New repository saved with Redmine Checkout Plugin installed](https://raw.github.com/martin-denizet/redmine_create_git/develop/screenshots/redmine_create_git_created.png)
 
 ## Known Issues
 
+* Only compatible with Linux (Tested on Debian)
 * No validation tests on the plugin configuration page input!
 
 ## Downloading and installing the plugin
 
 First download the plugin using git, open a terminal in your Redmine installation directory:
 
-<tt>git clone https://github.com/martin-denizet/redmine_create_git.git vendor/plugins/</tt>
+<tt>git clone https://github.com/martin-denizet/redmine_create_git.git ./plugins/</tt>
 
 The plugin uses the content_for in controllers gem. It's required to run a bundle install command:
 <tt>bundle install</tt>
@@ -75,7 +84,15 @@ No need to migrate the database!
 
 Go to your Redmine plugin configuration page. For example http://redmine.domain.com/settings/plugin/redmine_create_git
 Set the path to the repositories. It must be a local path and the user running Redmine on the server must have rw permissions.
-You can also configure the URL to integrate with Redmine Checkout Plugin. It tested with [rkallensee's fork](https://github.com/rkallensee/redmine_checkout.git).
+You can also configure the URL to integrate with Redmine Checkout Plugin. Tested working with [rkallensee's fork](https://github.com/rkallensee/redmine_checkout.git).
+
+## Use
+
+* Go to the Project Settings, Repository tab
+* Click "Quick create [Create Git plugin]"
+* Input a repository identifier
+* Click "Create"
+* Start working with git!
 
 ## Credits
 
