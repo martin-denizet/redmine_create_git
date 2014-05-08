@@ -11,12 +11,12 @@
 </p>
 <p>
   <label><%= l('labels.gitignore') %></label>
-  <%= text_area_tag 'settings[gitignore]', @settings[:gitignore], rows: 5 %>
+  <%= text_area_tag 'settings[gitignore]', @settings[:gitignore], :rows=> 5 %>
   <em class="info"> <%= l('help.field_gitignore') %></em>
 </p>
 <p>
   <label><%= l('labels.branches') %></label>
-  <%= text_area_tag 'settings[branches]', @settings[:branches], rows: 5 %>
+  <%= text_area_tag 'settings[branches]', @settings[:branches], :rows=> 5 %>
   <em class="info"> <%= l('help.field_branches') %></em>
 </p>
 <p>

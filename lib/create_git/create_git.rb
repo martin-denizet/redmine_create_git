@@ -51,7 +51,7 @@ class GitCreator
   def self.create_repo(repo_fullpath)
     if File.exist?(repo_fullpath)
       Rails.logger.error "Repository in '#{repo_fullpath}' already exists!"
-      raise I18n.t('errors.repo_already_exists', {path: repo_fullpath})
+      raise I18n.t('errors.repo_already_exists', {:path => repo_fullpath})
     else
       #Clone the new repository to initialize it
       #FIXME: incompatible with Windows

@@ -1,7 +1,7 @@
 <% if User.current.admin? %>
     <div class="contextual">
       <%= t('messages.change_settings') %>
-      <%= link_to t('button_configure'), {controller: 'settings', action: 'plugin', id: 'redmine_create_git'}, class: 'icon icon-edit' %>
+      <%= link_to t('button_configure'), {:controller => 'settings', :action => 'plugin', :id => 'redmine_create_git'}, :class => 'icon icon-edit' %>
     </div>
 <% end %>
 
@@ -28,7 +28,7 @@
 </div>
 <script type="text/javascript">
     var path = '<%= @repo_path_base %>';
-    var existing = <%= raw @project.repositories.where('type=?','Repository::Git').collect{|r| r.identifier} %>;
+    var existing = '<%= raw @project.repositories.where('type=?','Repository::Git').collect{|r| r.identifier} %>';
     $('#path_to_repository').val(path);
     $('#repo_identifier').on('input', function (target) {
         if ($(this).val().length > 0) {
