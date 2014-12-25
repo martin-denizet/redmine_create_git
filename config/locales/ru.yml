@@ -1,0 +1,19 @@
+ru:
+  messages:
+    change_settings: 'Хотите поменять настройки?'
+  errors:
+    repo_path_undefined: 'Путь к репозиторию не указан'
+    repo_path_doesnt_exist: 'Путь "%{path}" не существует'
+    repo_path_not_writable: 'Путь "%{path}" нет доступа для записи пользователя Rails. Вы можете воспользоваться командой 'chown' для исправления неполадки.'
+    repo_already_exists: 'Путь "%{path}" для репозитория уже существует!'
+  help:
+    field_repo_path: 'Путь для репозитория должен быть доступен для записи для пользователя Rails.'
+    field_repo_url: 'URL для отображения если установлен плагин Redmine Checkout plugin. Например: https://redmine.domain.com/git/.'
+    field_branches: 'Ветки, которые будут созданы по умолчанию, кроме master.'
+    field_gitignore: 'Default content for the .gitignore file'
+  labels:
+    gitignore: '[Необязательно] Gitignore'
+    branches: '[Необязательно] Ветки'
+    repo_url: '[Необязательно] URL репозитория'
+  buttons:
+    quick_create: 'Быстрое создание [Create Git plugin]'
