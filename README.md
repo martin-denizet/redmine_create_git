@@ -2,6 +2,8 @@
 
 Create and initialize a new Git repository from Redmine within seconds!
 
+*WARNING:* This plugin is quite specific to a certain setup and was not made to work across all kind of implementations
+
 I had to create Git repositories quite often and going to the command line to initialize a repository was time-consuming, this plugin solves this problem.
 
 If you like this plugin, you're welcome to endorse me!
@@ -11,11 +13,15 @@ Work sponsored by Algen, visit us at http://algen.co
 
 ## Compatibility
 
-Compatible with Redmine 2.4.x and 2.5.x on Linux
+Compatible with Redmine 3.x on Linux
 
 Tested on:
-* 2.4.2 stable
-* 2.5.0 stable
+* 3.1.1 stable
+Assumed to work on:
+* 3.x.x
+* 2.6.x
+* 2.5.x
+* 2.4.x
 
 ## READ FIRST
 
@@ -45,7 +51,7 @@ The git section in Apache's VirtualHost for Redmine should be as following:
 
 
         ## for mysql
-        RedmineDSN "DBI:mysql:database=gws;host=localhost"
+        RedmineDSN "DBI:mysql:database=redmine;host=localhost"
         RedmineDbUser "redmine"
         RedmineDbPass "<yourpasswordhere>"
 
@@ -69,7 +75,7 @@ The git section in Apache's VirtualHost for Redmine should be as following:
 
 ## Known Issues
 
-* Only compatible with Linux *(Tested on Debian)*
+* Only compatible with Linux *(Tested on Debian/Ubuntu)*
 * No validation tests on the plugin configuration page input!
 
 ## Downloading and installing the plugin
@@ -89,7 +95,7 @@ No need to migrate the database!
 
 Go to your Redmine plugin configuration page. For example http://redmine.domain.com/settings/plugin/redmine_create_git
 Set the path to the repositories. It must be a local path and the user running Redmine on the server must have rw permissions.
-You can also configure the URL to integrate with Redmine Checkout Plugin. Tested working with [rkallensee's fork](https://github.com/rkallensee/redmine_checkout.git).
+You can also configure the URL to integrate with Redmine Checkout Plugin. Tested working with [thorin's fork](https://github.com/thorin/redmine_checkout) (Only fork compatible with Redmine 3.x AFAIK).
 
 ## Use
 
@@ -105,5 +111,7 @@ Uses Clément Alexandre's content_for_in_controllers gem: https://github.com/clm
 
 ## License
 
-GPLv2
+Copyright (C) 2014, 2015 Martin Denizet <martin.denizet@supinfo.com>
+
+Release under GPLv2 license
 

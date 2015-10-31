@@ -20,7 +20,7 @@ class GitCreator
     Rails.logger.info "Creating repo in #{new_repo_path} for project #{project.name}"
 
     if project and create_repo(new_repo_path)
-      repo=Repository.factory('Git')
+      repo = Repository.factory('Git')
       repo.project = project
       repo.url = repo_path_base+new_repo_name
       repo.login = ''
@@ -29,17 +29,22 @@ class GitCreator
       #If the checkout plugin is installed
       if (defined?(Checkout))
         #New checkout plugin configuration hash
-        repo.checkout_settings = HashWithIndifferentAccess.new
         #TODO: Use Checkout plugin defaults
-        repo.checkout_settings['checkout_display_command']='0'
-        repo.checkout_settings['checkout_protocols']=[{'command' => 'git clone', 'is_default' => '1', 'protocol' => 'Git', 'fixed_url' => repo_url_base+new_repo_name, 'access' => 'permission'}] unless  repo_url_base.nil?
-        repo.checkout_settings['checkout_description']="The data contained in this repository can be downloaded to your computer using one of several clients.\nPlease see the documentation of your version control software client for more information.\n\nPlease select the desired protocol below to get the URL.\n"
-        repo.checkout_settings['checkout_overwrite']='1'
         repo.checkout_overwrite = '1'
+        repo.checkout_display_command = Setting.send('checkout_display_command_Git')
+        #Somehow it would not work using a simple Hash
+        params = ActionController::Parameters.new({:checkout_protocols => [{
+                                                                               'command' => 'git clone',
+                                                                               'is_default' => '1',
+                                                                               'protocol' => 'Git',
+                                                                               'fixed_url' => repo_url_base+new_repo_name,
+                                                                               'access' => 'permission'}]
+                                                  }) unless repo_url_base.nil?
+
+        repo.checkout_protocols = params[:checkout_protocols] if params
+
       end
       #TODO: Use Redmine defaults
-      repo.path_encoding = ''
-      repo.log_encoding = nil
       repo.extra_info = {'extra_report_last_commit' => '0'}
       repo.identifier = repo_identifier
       repo.is_default = is_default
@@ -51,7 +56,7 @@ class GitCreator
   def self.create_repo(repo_fullpath)
     if File.exist?(repo_fullpath)
       Rails.logger.error "Repository in '#{repo_fullpath}' already exists!"
-      raise I18n.t('errors.repo_already_exists', {path: repo_fullpath})
+      raise I18n.t('errors.repo_already_exists', {:path => repo_fullpath})
     else
       #Clone the new repository to initialize it
       #FIXME: incompatible with Windows
