@@ -7,8 +7,7 @@ module CreateGit
 
       base.class_eval do
         unloadable
-
-        alias_method_chain :settings, :create_git
+        before_action :settings, :settings_with_create_git
       end
     end
 
@@ -21,9 +20,7 @@ $( document ).ready(function() {
 });
 </script>".html_safe
 
-        settings_without_create_git
       end
-
     end
   end
 end
